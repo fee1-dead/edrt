@@ -19,31 +19,14 @@ pub struct CameraBuilder {
     pub center: Point3,
 }
 
-// (5)
+// (6)
 impl CameraBuilder {
     pub fn build(self) -> Camera {
-        let CameraBuilder { image_width, aspect_ratio, focal_length, center } = self;
-
-        let image_height = (image_width as f64 / aspect_ratio) as u64;
-        let viewport_height = 2.0;
-        let viewport_width = viewport_height * (image_width as f64 / image_height as f64);
-        let viewport_u = Vec3(viewport_width, 0.0, 0.0);
-        let viewport_v = Vec3(0.0, -viewport_height, 0.0);
-        let pixel_delta_u = viewport_u / image_width as f64;
-        let pixel_delta_v = viewport_v / image_height as f64;
-        let viewport_upper_left = center - Vec3(0.0, 0.0, focal_length) - viewport_u/2.0 - viewport_v/2.0;
-        let pixel00_loc = viewport_upper_left + 0.5*(pixel_delta_u + pixel_delta_v);
-        Camera {
-            image_width,
-            image_height,
-            pixel00_loc,
-            pixel_delta_u,
-            pixel_delta_v,
-            center,
-        }
+        todo!()
     }
 }
 
+// (6)
 #[test]
 fn test_camera_builder() {
     let expected_camera = Camera {
